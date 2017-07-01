@@ -142,8 +142,8 @@ msgstr "Précédent"
 
 #: authentication/templates/authentication/signup.html:12
 #: core/templates/core/cover.html:41
-msgid "Sign up for Bootcamp"
-msgstr "S'inscrire à Bootcamp"
+msgid "Sign up for artbit.io"
+msgstr "S'inscrire à artbit.io"
 
 #: authentication/templates/authentication/signup.html:27
 msgid "Create an account"

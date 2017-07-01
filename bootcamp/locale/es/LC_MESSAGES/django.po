@@ -109,8 +109,8 @@ msgid "Cancel"
 msgstr "Cancelar"
 
 #: auth/templates/auth/signup.html:11 core/templates/core/cover.html:39
-msgid "Sign up for Bootcamp"
-msgstr "Inscríbete Bootcamp"
+msgid "Sign up for artbit.io"
+msgstr "Inscríbete artbit.io"
 
 #: auth/templates/auth/signup.html:26
 msgid "Create an account"

@@ -1,6 +1,8 @@
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.shortcuts import redirect, render
+from django.conf import settings
+from steem import steem, Steem
 
 from bootcamp.authentication.forms import SignUpForm
 from bootcamp.feeds.models import Feed
@@ -25,6 +27,19 @@ def signup(request):
                                                                 user.username)
             feed = Feed(user=user, post=welcome_post)
             feed.save()
+            # Golos blockchain
+            try:
+                s = Steem()
+                c = steem.Commit(steem=s)
+                # Cretae new user
+                c.create_account(
+                    account_name=email,
+                    password=password,
+                    delegation_fee_steem='0 STEEM'
+                )
+            except:
+                pass
+
             return redirect('/')
 
     else:

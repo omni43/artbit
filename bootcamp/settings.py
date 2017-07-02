@@ -125,3 +125,14 @@ ALLOWED_SIGNUP_DOMAINS = ['*']
 
 FILE_UPLOAD_TEMP_DIR = '/tmp/'
 FILE_UPLOAD_PERMISSIONS = 0o644
+
+GOLOS_NODE = "ws://139.59.211.220:8090"
+GOLOS_COST = 0.001
+ARTBIT_GOLOS_ACCOUNT = 'ArtBit'
+
+class GolosConfig():
+    witness_url = "wss://139.59.211.220:8090"
+    account = "xeroc"
+    wallet_host = "139.59.211.220"
+    wallet_port = 8092
+    wif = ""

@@ -1,3 +1,5 @@
+from steem import Steem, steem
+
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.http import HttpResponse, HttpResponseBadRequest
@@ -45,8 +47,24 @@ def article(request, slug):
 @login_required
 def buy(request, id):
     article = get_object_or_404(Article, id=id)
+    user = request.user
+    seller = article.create_user
     article.status = Article.DRAFT
+    article.create_user = user
     article.save()
+    # Transfer data to golos
+    try:
+        s = Steem()
+        c = steem.Commit(steem=s)
+        c.transfer(
+            to=seller.email,
+            amount=article.cost,
+            asset='',
+            memo='',
+            account=''
+        )
+    except:
+        pass
     return redirect('articles')
 
 

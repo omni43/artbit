@@ -1,5 +1,6 @@
 import os
 from django.http import HttpResponse
+from steem import steem, Steem
 
 from django.conf import settings as django_settings
 from django.contrib import messages
@@ -64,6 +65,19 @@ def profile_like(request):
     if user.profile.id != profile.id:
         profile.weight += 1
         profile.save()
+        # Minig ArtCoinds
+        try:
+            s = Steem()
+            c = steem.Commit(steem=s)
+            c.transfer(
+                to=settings.ARTBIT_GOLOS_ACCOUNT,
+                amount=settings.GOLOS_COST,
+                asset='',
+                memo='',
+                account=''
+            )
+        except:
+            pass
     return HttpResponse(profile.weight)
 
 

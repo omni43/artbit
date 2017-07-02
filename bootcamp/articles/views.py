@@ -43,6 +43,14 @@ def article(request, slug):
 
 
 @login_required
+def buy(request, id):
+    article = get_object_or_404(Article, id=id)
+    article.status = Article.DRAFT
+    article.save()
+    return redirect('articles')
+
+
+@login_required
 def tag(request, tag_name):
     tags = Tag.objects.filter(tag=tag_name)
     articles = []

@@ -84,3 +84,13 @@ article .content img {
   max-width: 1000px;
   max-height: 600px;
 }
+
+td img {
+  max-width: 800px;
+  max-height: 600px;
+}
+
+.coin_label {
+  width: 20px;
+  height: 20px;
+}

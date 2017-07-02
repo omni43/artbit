@@ -12,8 +12,7 @@ from bootcamp.articles import views as articles_view
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    # url(r'^$', core_views.home, name='home'),
-    url(r'^$', articles_view.articles, name='home'),
+    url(r'^$', core_views.home, name='home'),
     url(r'^login', auth_views.login, {'template_name': 'core/cover.html'},
         name='login'),
     url(r'^logout', auth_views.logout, {'next_page': '/'}, name='logout'),

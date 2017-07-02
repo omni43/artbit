@@ -10,8 +10,8 @@
       <a href="{% url 'profile' article.create_user.username %}">{{ article.create_user.profile.get_screen_name }}</a>
     </span>
     <span class="comments">
-      <span class="glyphicon glyphicon-comment"></span>
-      {{ article.get_comments.count }} Comments
+      <span class="glyphicon glyphicon-bitcoin"></span>
+      {{ article.cost }}
     </span>
   </div>
   <div class="content">

@@ -11,6 +11,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from bootcamp.core.forms import ChangePasswordForm, ProfileForm
 from bootcamp.feeds.models import Feed
 from bootcamp.feeds.views import FEEDS_NUM_PAGES, feeds
+from bootcamp.articles.models import Article
 from PIL import Image
 
 
@@ -23,7 +24,7 @@ def home(request):
 
 @login_required
 def network(request):
-    users_list = User.objects.filter(is_active=True).order_by('username')
+    users_list = User.objects.filter(is_active=True, profile__is_master=True).order_by('username')
     paginator = Paginator(users_list, 100)
     page = request.GET.get('page')
     try:
@@ -39,6 +40,7 @@ def network(request):
 def profile(request, username):
     page_user = get_object_or_404(User, username=username)
     all_feeds = Feed.get_feeds().filter(user=page_user)
+    # all_feeds = Article.objects.filter(create_user=page_user)
     paginator = Paginator(all_feeds, FEEDS_NUM_PAGES)
     feeds = paginator.page(1)
     from_feed = -1
@@ -46,7 +48,7 @@ def profile(request, username):
         from_feed = feeds[0].id
     return render(request, 'core/profile.html', {
         'page_user': page_user,
-        'feeds': feeds,
+        'feeds': all_feeds,
         'from_feed': from_feed,
         'page': 1
         })

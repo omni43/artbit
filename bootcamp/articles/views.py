@@ -8,9 +8,12 @@ import markdown
 from bootcamp.articles.forms import ArticleForm
 from bootcamp.articles.models import Article, ArticleComment, Tag
 from bootcamp.decorators import ajax_required
+from bootcamp.authentication.models import Profile
 
 
 def _articles(request, articles):
+    user = request.user
+    is_master = Profile.objects.get(user=user).is_master
     paginator = Paginator(articles, 10)
     page = request.GET.get('page')
     try:
@@ -21,6 +24,7 @@ def _articles(request, articles):
         articles = paginator.page(paginator.num_pages)
     popular_tags = Tag.get_popular_tags()
     return render(request, 'articles/articles.html', {
+        'is_master': is_master,
         'articles': articles,
         'popular_tags': popular_tags
     })
@@ -56,6 +60,7 @@ def write(request):
             article = Article()
             article.create_user = request.user
             article.title = form.cleaned_data.get('title')
+            article.cost = form.cleaned_data.get('cost')
             article.content = form.cleaned_data.get('content')
             status = form.cleaned_data.get('status')
             if status in [Article.PUBLISHED, Article.DRAFT]:

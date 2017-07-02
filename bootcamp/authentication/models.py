@@ -20,6 +20,7 @@ class Profile(models.Model):
     url = models.CharField(max_length=50, null=True, blank=True)
     job_title = models.CharField(max_length=50, null=True, blank=True)
     wallet = models.CharField(max_length=50, null=True, blank=True)
+    is_master = models.BooleanField(default=False)
 
     class Meta:
         db_table = 'auth_profile'

@@ -74,3 +74,13 @@ main .container {
 .markdown {
   margin-bottom: .8em;
 }
+
+.articles .content img {
+  max-width: 500px;
+  max-height: 300px;
+}
+
+article .content img {
+  max-width: 1000px;
+  max-height: 600px;
+}

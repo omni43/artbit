@@ -29,6 +29,7 @@ class Article(models.Model):
     update_date = models.DateTimeField(blank=True, null=True)
     update_user = models.ForeignKey(User, null=True, blank=True,
                                     related_name="+")
+    cost = models.DecimalField(max_digits=12, decimal_places=4)
 
     class Meta:
         verbose_name = _("Article")

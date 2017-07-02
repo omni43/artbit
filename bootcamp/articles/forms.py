@@ -11,6 +11,8 @@ class ArticleForm(forms.ModelForm):
     content = forms.CharField(
         widget=forms.Textarea(attrs={'class': 'form-control'}),
         max_length=4000)
+    cost = forms.DecimalField(
+        widget=forms.NumberInput(), max_digits=12, decimal_places=4)
     tags = forms.CharField(
         widget=forms.TextInput(attrs={'class': 'form-control'}),
         max_length=255, required=False,
@@ -18,4 +20,4 @@ class ArticleForm(forms.ModelForm):
 
     class Meta:
         model = Article
-        fields = ['title', 'content', 'tags', 'status']
+        fields = ['title', 'content', 'cost', 'tags', 'status']

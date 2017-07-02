@@ -28,6 +28,15 @@ class ProfileForm(forms.ModelForm):
         widget=forms.TextInput(attrs={'class': 'form-control'}),
         max_length=50,
         required=False)
+    is_master = forms.BooleanField(
+        widget=forms.CheckboxInput(attrs={'class': 'form-control'}),
+        required=False)
+    weight = forms.IntegerField(
+        widget=forms.NumberInput(attrs={'class': 'form-control'}),
+        required=False)
+    tocken = forms.UUIDField(
+        widget=forms.TextInput(attrs={'class': 'form-control'}),
+        required=False)
     location = forms.CharField(
         widget=forms.TextInput(attrs={'class': 'form-control'}),
         max_length=50,
@@ -35,7 +44,7 @@ class ProfileForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'job_title', 'wallet',
+        fields = ['first_name', 'last_name', 'job_title', 'wallet', 'is_master', 'weight', 'tocken',
                   'email', 'url', 'location', ]
 
 

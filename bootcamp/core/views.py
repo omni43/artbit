@@ -64,6 +64,9 @@ def settings(request):
             user.last_name = form.cleaned_data.get('last_name')
             user.profile.job_title = form.cleaned_data.get('job_title')
             user.profile.wallet = form.cleaned_data.get('wallet')
+            user.profile.is_master = form.cleaned_data.get('is_master')
+            user.profile.weight = form.cleaned_data.get('weight')
+            user.profile.tocken = form.cleaned_data.get('tocken')
             user.email = form.cleaned_data.get('email')
             user.profile.url = form.cleaned_data.get('url')
             user.profile.location = form.cleaned_data.get('location')
@@ -77,6 +80,9 @@ def settings(request):
             'job_title': user.profile.job_title,
             'url': user.profile.url,
             'wallet': user.profile.wallet,
+            'is_master': user.profile.is_master,
+            'weight': user.profile.weight,
+            'tocken': user.profile.tocken,
             'location': user.profile.location
             })
     return render(request, 'core/settings.html', {'form': form})

@@ -5,6 +5,7 @@ from bootcamp.articles import views
 urlpatterns = [
     url(r'^$', views.articles, name='articles'),
     url(r'^write/$', views.write, name='write'),
+    url(r'^buy/(?P<id>[-\w]+)/$', views.buy, name='buy'),
     url(r'^preview/$', views.preview, name='preview'),
     url(r'^drafts/$', views.drafts, name='drafts'),
     url(r'^comment/$', views.comment, name='comment'),

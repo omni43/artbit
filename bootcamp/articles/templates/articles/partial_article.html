@@ -1,3 +1,4 @@
+{% load staticfiles i18n %}
 <article>
   <h2><a href="{% url 'article' article.slug %}">{{ article.title }}</a></h2>
   <div class="info">
@@ -10,8 +11,12 @@
       <a href="{% url 'profile' article.create_user.username %}">{{ article.create_user.profile.get_screen_name }}</a>
     </span>
     <span class="comments">
-      <span class="glyphicon glyphicon-bitcoin"></span>
+      <!--<span class="glyphicon glyphicon-bitcoin"></span>-->
+      <img src="{% static 'img/ArtCoin.png' %}" class="coin_label">
       {{ article.cost }}
+    </span>
+    <span class="comments">
+      <a href="{% url 'buy' article.id %}"><button>BUY</button></a>
     </span>
   </div>
   <div class="content">

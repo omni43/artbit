@@ -1,4 +1,5 @@
 import os
+from django.http import HttpResponse
 
 from django.conf import settings as django_settings
 from django.contrib import messages
@@ -10,8 +11,9 @@ from django.shortcuts import get_object_or_404, redirect, render
 
 from bootcamp.core.forms import ChangePasswordForm, ProfileForm
 from bootcamp.feeds.models import Feed
+from bootcamp.decorators import ajax_required
 from bootcamp.feeds.views import FEEDS_NUM_PAGES, feeds
-from bootcamp.articles.models import Article
+from bootcamp.authentication.models import Profile
 from PIL import Image
 
 
@@ -52,6 +54,17 @@ def profile(request, username):
         'from_feed': from_feed,
         'page': 1
         })
+
+@login_required
+@ajax_required
+def profile_like(request):
+    profile_id = request.POST.get('profile_id')
+    user = request.user
+    profile = get_object_or_404(Profile, pk=profile_id)
+    if user.profile.id != profile.id:
+        profile.weight += 1
+        profile.save()
+    return HttpResponse(profile.weight)
 
 
 @login_required

@@ -1,5 +1,6 @@
 from __future__ import unicode_literals
 
+import uuid
 import hashlib
 import os.path
 import urllib
@@ -21,6 +22,8 @@ class Profile(models.Model):
     job_title = models.CharField(max_length=50, null=True, blank=True)
     wallet = models.CharField(max_length=50, null=True, blank=True)
     is_master = models.BooleanField(default=False)
+    weight = models.IntegerField(default=0)
+    tocken = models.UUIDField(default=uuid.uuid4)
 
     class Meta:
         db_table = 'auth_profile'

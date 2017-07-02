@@ -26,6 +26,8 @@ class Migration(migrations.Migration):
                 ('status', models.CharField(choices=[(b'D', b'Draft'), (b'P', b'Published')], default=b'D', max_length=1)),
                 ('create_date', models.DateTimeField(auto_now_add=True)),
                 ('update_date', models.DateTimeField(blank=True, null=True)),
+                ('cost', models.DecimalField(max_digits=12, decimal_places=4)
+),
                 ('create_user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
                 ('update_user', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='+', to=settings.AUTH_USER_MODEL)),
             ],
